@@ -1,7 +1,8 @@
 from flask import Flask
-
+import os
 app = Flask(__name__)
 
-app.config['SECRET_KEY']='ldfjsolasfuasdfjsodfusoij4w09r8pswojufsldkfjdf9'
+app.config['SECRET_KEY']=os.environ['SK']
+
 
 from IPL_Predictions import routes
