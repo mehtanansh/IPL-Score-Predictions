@@ -1,0 +1,109 @@
+{% extends 'layout.html' %}
+{% block content %}
+<style type="text/css">
+	body
+	{
+	background-image:url("{{url_for('static', filename='BG.jpg')}}");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: 50% 50%;
+	font-family: sans-serif;
+	}
+</style>
+<center>
+<h1> IPL SCORE PREDICTIONS</h1>
+<div style="padding: 1px;">
+	<div  class="container">
+	<form method="POST" enctype="multipart/form-data" style="background-color: rgba(0,0,0,0.85);">
+		{% with messages = get_flashed_messages() %}
+		  {% if messages %}
+    		{% for message in messages %}
+      			<strong style="color: red;">{{ message }}</strong><br><br>
+		    {% endfor %}
+		  {% endif %}
+		{% endwith %}
+		<div class="form-group" style="width: 250px;">
+			<label for="BatTeam" style="color: white;">
+				<strong>Batting Team</strong>
+			</label>
+			<select class="form-control" name="BatTeam" id="BatTeam" required>
+				<option disabled selected value="">Batting Team</option>
+				<option value="Chennai Super Kings">Chennai Super Kings</option>
+				<option value="Delhi Capitals">Delhi Capitals</option>
+				<option value="Kings XI Punjab">Kings XI Punjab</option>
+				<option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+				<option value="Mumbai Indians">Mumbai Indians</option>
+				<option value="Rajasthan Royals">Rajasthan Royals</option>
+				<option value="Royal Challengers Banglore">Royal Challengers Banglore</option>
+				<option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+			</select>
+		</div>
+		<div class="form-group" style="width: 250px;">
+			<label for="BowlTeam"  style="color: white;">
+				<strong>Bowling Team</strong>
+			</label>
+			<select class="form-control" name="BowlTeam" id="BowlTeam" required>
+				<option disabled selected value="" >Bowling Team</option>
+				<option value="Chennai Super Kings">Chennai Super Kings</option>
+				<option value="Delhi Capitals">Delhi Capitals</option>
+				<option value="Kings XI Punjab">Kings XI Punjab</option>
+				<option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+				<option value="Mumbai Indians">Mumbai Indians</option>
+				<option value="Rajasthan Royals">Rajasthan Royals</option>
+				<option value='Royal Challengers Banglore'>Royal Challengers Banglore</option>
+				<option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+			</select>
+		</div>
+		<div class="form-group" style="width: 250px;" >
+			<label for="Venue"  style="color: white;">
+				<strong>Venue</strong>
+			</label>
+			<select class="form-control" name="Venue" id="Venue" required>
+				<option disabled selected value="" >Venue</option>
+				<option value="Eden Gardens,Kolkata">Eden Gardens,Kolkata</option>
+				<option value="Arun Jaitely Stadium,Delhi">Arun Jaitely Stadium,Delhi</option>
+				<option value="M Chinnaswamy Stadium,Bengaluru">M Chinnaswamy Stadium,Bengaluru</option>
+				<option value="MA Chidambaram Stadium,Chepauk">MA Chidambaram Stadium,Chepauk</option>
+				<option value="PCA Stadium,Mohali">PCA Stadium,Mohali</option>
+				<option value="Rajiv Gandhi Internl,Uppal">Rajiv Gandhi Internl Stadium,Uppal</option>
+				<option value="Sawai Mansingh Stadium,Jaipur">Sawai Mansingh Stadium,Jaipur</option>
+				<option value="Wankhede Stadium,Mumbai">Wankhede Stadium,Mumbai</option>
+			</select>
+		</div>
+		<div class="form-group" >
+			<label for="overs"  style="color: white;">
+				<strong>Overs</strong>
+			</label>
+			<input type="form-text" name="overs" id="overs" style="width: 150px;" required placeholder="Enter overs>6.0">
+		</div>
+		<div class="form-group" >
+			<label for="Runs"  style="color: white;">
+				<strong>Runs Scored</strong>
+			</label>
+			<input type="number" name="Runs" min="0" id="Runs" style="width: 200px;" required>
+		</div>
+		<div class="form-group" >
+			<label for="Wickets"  style="color: white;">
+				<strong>Wickets Taken</strong>
+			</label>
+			<input type="number" min="0" max="9" name="Wickets" id="Wickets" style="width: 200px;" required>
+		</div>
+		<div class="form-group">
+			<label for="RPrev5" style="color: white;">
+				<strong>Runs Scored in previous 5 overs</strong>
+			</label>
+			<input type="number" min="0" name="RPrev5" id="RPrev5" style="width: 200px;" required>
+		</div>
+		<div class="form-group">
+			<label for="WPrev5" style="color: white;">
+				<strong>Wickets taken in previous 5 overs</strong>
+			</label>
+			<input type="number" min="0" max="9" name="WPrev5" id="WPrev5" style="width: 200px;" required>
+		</div>
+		<button type="submit" class="btn btn-outline-success">Submit</button><br><br>
+	</form>
+</div>
+</div>
+</center>
+{% endblock content %}

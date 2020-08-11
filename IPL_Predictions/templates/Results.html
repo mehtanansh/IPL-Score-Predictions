@@ -1,0 +1,129 @@
+{% extends 'layout.html' %}
+{% block content %}
+<style type="text/css">
+	body
+	{
+	background-image:url("{{url_for('static', filename='BG2.jpg')}}");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	background-position: 50% 50%;
+	font-family: sans-serif;
+	}
+	input[type=form-text]:disabled {
+ 	 background: #dddddd;
+}
+</style>
+<center>
+	<h1 style="color: orange;">Score Predictions</h1><br>
+	<h3 style="color: orange;">Here's what we can say from the current situation</h3>
+<div class="container" style="padding: 10px;background-color: rgba(0,0,0,0.5);color: white;">
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+    	<ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+	<div class="row align-items-center">
+		<div class="col-xl" style="padding: 10px;">
+			{% if Bat_MI %}
+				<img src="{{url_for('static', filename='MI.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% elif Bat_SRH %}
+				<img src="{{url_for('static', filename='SRH.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% elif Bat_KKR %}
+				<img src="{{url_for('static', filename='KKR.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% elif Bat_RCB %}
+				<img src="{{url_for('static', filename='RCB.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% elif Bat_RR %}
+				<img src="{{url_for('static', filename='RR.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% elif Bat_CSK %}
+				<img src="{{url_for('static', filename='CSK.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% elif Bat_KXIP %}
+				<img src="{{url_for('static', filename='KXIP.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% elif Bat_DC %}
+				<img src="{{url_for('static', filename='DC.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% endif %}<br><br>
+			<strong>Team Batting First</strong>
+		</div>
+		<div class="col-xl" style="color: white;padding: 10px;">
+			<img src="{{url_for('static', filename='vs.jpg')}}" class="img-fluid rounded-circle" width="75px;"><br><br>
+			<strong>At {{match_venue}}</strong>
+		</div>
+		<div class="col-xl" style="padding: 10px;color: white;">
+			{% if Bowl_DC %}
+				<img src="{{url_for('static', filename='DC.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% elif Bowl_SRH %}
+				<img src="{{url_for('static', filename='SRH.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% elif Bowl_KKR %}
+				<img src="{{url_for('static', filename='KKR.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% elif Bowl_RCB %}
+				<img src="{{url_for('static', filename='RCB.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% elif Bowl_RR %}
+				<img src="{{url_for('static', filename='RR.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% elif Bowl_MI %}
+				<img src="{{url_for('static', filename='MI.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% elif Bowl_KXIP %}
+				<img src="{{url_for('static', filename='KXIP.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% elif Bowl_CSK %}
+				<img src="{{url_for('static', filename='CSK.jpg')}}" class="img-fluid rounded-circle" width="250px;">
+			{% endif %}<br><br>
+			<strong>Team Bowling First</strong>
+		</div>
+	</div>
+			<div class="form-group" >
+			<label for="overs"  style="color: white;">
+				<strong>Overs</strong>
+			</label>
+			<input type="form-text" name="overs" id="overs" style="width: 150px;" disabled="disabled" value="{{ovr}}">
+		</div>
+		<div class="form-group" >
+			<label for="Runs"  style="color: white;">
+				<strong>Runs Scored</strong>
+			</label>
+			<input type="form-text" name="Runs" id="Runs" style="width: 200px;" disabled="disabled" value="{{Runs}}">
+		</div>
+		<div class="form-group" >
+			<label for="Wickets"  style="color: white;">
+				<strong>Wickets Taken</strong>
+			</label>
+			<input type="form-text" id="Wickets" name="Wickets" style="width: 200px;" disabled="disabled" value="{{Wkts}}">
+		</div>
+		<div class="form-group" >
+			<label for="RPrev5"  style="color: white;">
+				<strong>Runs scored in previous 5 overs</strong>
+			</label>
+			<input type="form-text" name="RPrev5" id="RPrev5" style="width: 200px;" disabled="disabled" value="{{Runs_5}}">
+		</div>
+		<div class="form-group">
+			<label for="WPrev5" style="color: white;">
+				<strong>Wickets taken in previous 5 overs</strong>
+			</label>
+			<input type="form-text" name="WPrev5" id="WPrev5" style="width: 200px;" disabled="disabled" value="{{Wkts_5}}">
+		</div>
+		<p>	<strong>Predicted Score</strong></p>
+		<div class="row align-items-center">
+			<div class="col-xl" style="padding: 10px;">
+				<label for="Pred_Score_Low" style="color: white;">
+					<strong>Lower limit of Score</strong>
+				</label>
+				<input type="form-text" name="Pred_Score_Low" id="Pred_Score_Low" style="width: 200px;" disabled="disabled" value="{{Prediction_Lower}}">
+			</div>
+			<div class="col-xl" style="padding: 10px;">
+				<label for="Pred_Score_Upper" style="color: white;">
+					<strong>Upper limit of  Score</strong>
+				</label>
+				<input type="form-text" name="Pred_Score_Upper" id="Pred_Score_Upper" style="width: 200px;" disabled="disabled" value="{{Prediction_Upper}}">
+			</div>
+		</div>
+		<a href="{{ url_for('Home') }}">
+			<button type="button" class="btn btn-outline-light">Back to Home </button>
+		</a>
+</div>
+</center>
+
+{% endblock content %}
+
+<!-- {{ form.hidden_tag() }} -->
