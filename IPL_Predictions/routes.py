@@ -20,7 +20,7 @@ def Home():
 		Dec=ovrs.split('.')
 		if (len(Dec)==1):
 			Dec.append('0')
-		if (int(Dec[0])<=19 and int(Dec[1])<=5):
+		if (int(Dec[0])<=17 and int(Dec[1])<=5):
 			ovrs=float(ovrs)
 			if (batting_team==bowling_team):
 				flash('You can not have the same batting and bowling team', 'danger')
@@ -36,8 +36,6 @@ def Home():
 				return render_template('Home.html',title='IPL Score-Home')
 			else:
 				temp_array = []
-				print(batting_team)
-				print(type(batting_team))
 				if batting_team == 'Chennai Super Kings':
 					temp_array = temp_array + [1,0,0,0,0,0,0,0]
 				elif batting_team == 'Delhi Capitals':
@@ -51,7 +49,6 @@ def Home():
 				elif batting_team == 'Rajasthan Royals':
 					temp_array = temp_array + [0,0,0,0,0,1,0,0]
 				elif batting_team == "Royal Challengers Banglore":
-					print(True)
 					temp_array = temp_array + [0,0,0,0,0,0,1,0]
 				elif batting_team == 'Sunrisers Hyderabad':
 					temp_array = temp_array + [0,0,0,0,0,0,0,1]
@@ -70,7 +67,6 @@ def Home():
 				elif bowling_team == 'Rajasthan Royals':
 					temp_array = temp_array + [0,0,0,0,0,1,0,0]
 				elif bowling_team == 'Royal Challengers Banglore':
-					print(True)
 					temp_array = temp_array + [0,0,0,0,0,0,1,0]
 				elif bowling_team == 'Sunrisers Hyderabad':
 					temp_array = temp_array + [0,0,0,0,0,0,0,1]
@@ -78,8 +74,6 @@ def Home():
 				temp_array = temp_array + [ovrs, Runs_Scored, Wkts,Runs_Prev5, Wkts_Prev5]
 				temp_array=[temp_array]
 				data=np.array(temp_array)
-				print(data)
-				print(data.shape)
 				my_prediction = int(regressor.predict(data))
 
 				if venue == 'Eden Gardens,Kolkata':
