@@ -1,6 +1,7 @@
 {% extends 'layout.html' %}
 {% block content %}
 <style type="text/css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	body
 	{
 	background-image:url("{{url_for('static', filename='BG2.jpg')}}");
@@ -121,6 +122,21 @@
 		<a href="{{ url_for('Home') }}">
 			<button type="button" class="btn btn-outline-light">Back to Home </button>
 		</a>
+
+		<div class="row">
+				<div class="col-sm" style="color: white;">
+					<a href="https://www.instagram.com/anshmehta0704/"><i class="fa fa-instagram" aria-hidden="true"></i>Instagram</a>
+				</div>
+				<div class="col-sm" style="color: white;">
+					<a href="mailto: mehtanansh@gmail.com"><i class="fas fa-envelope"></i>Gmail</a>
+				</div>
+				<div class="col-sm" style="color: white;">
+					<a href="https://github.com/mehtanansh"><i class="fa fa-github" aria-hidden="true"></i>GitHub</a>
+				</div>
+				<div class="col-sm">
+					<a href="https://in.linkedin.com/in/ansh-mehta-2667b116b?trk=people-guest_people_search-card"><i class="fa fa-linkedin" aria-hidden="true"></i>LinkedIn</a>
+				</div>
+			</div>
 </div>
 </center>
 
